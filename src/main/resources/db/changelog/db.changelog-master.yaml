@@ -1,0 +1,45 @@
+databaseChangeLog:
+- changeSet:
+    id: v.2019-11-12-01
+    author: haianh
+    changes:
+    - createTable:
+        tableName: user
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: username
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: full-name
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: description
+            type: varchar(1000)
+            constraints:
+              nullable: true
+        - column:
+            name: role
+            type: int
+            constraints:
+              nullable: false
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: created-date
+            type: date
+            constraints:
+              nullable: false
