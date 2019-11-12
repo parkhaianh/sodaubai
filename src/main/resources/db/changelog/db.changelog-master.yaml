@@ -19,20 +19,15 @@ databaseChangeLog:
             constraints:
               nullable: false
         - column:
-            name: full-name
+            name: password
             type: varchar(255)
             constraints:
               nullable: false
         - column:
-            name: description
-            type: varchar(1000)
+            name: full-name
+            type: varchar(255)
             constraints:
               nullable: true
-        - column:
-            name: role
-            type: int
-            constraints:
-              nullable: false
         - column:
             name: status
             type: varchar(20)
@@ -40,6 +35,21 @@ databaseChangeLog:
               nullable: false
         - column:
             name: created-date
+            type: date
+            constraints:
+              nullable: false
+        - column:
+            name: modified-date
+            type: date
+            constraints:
+              nullable: false
+        - column:
+            name: modified-by
+            type: date
+            constraints:
+              nullable: false
+        - column:
+            name: created-by
             type: date
             constraints:
               nullable: false
