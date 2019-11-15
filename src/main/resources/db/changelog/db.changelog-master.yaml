@@ -4,7 +4,7 @@ databaseChangeLog:
     author: haianh
     changes:
     - createTable:
-        tableName: user
+        tableName: user_info
         columns:
         - column:
             name: id
@@ -24,7 +24,7 @@ databaseChangeLog:
             constraints:
               nullable: false
         - column:
-            name: full-name
+            name: full_name
             type: varchar(255)
             constraints:
               nullable: true
@@ -34,22 +34,22 @@ databaseChangeLog:
             constraints:
               nullable: false
         - column:
-            name: created-date
+            name: created_date
             type: date
             constraints:
               nullable: false
         - column:
-            name: modified-date
+            name: modified_date
             type: date
             constraints:
               nullable: false
         - column:
-            name: modified-by
-            type: date
+            name: modified_by
+            type: varchar(200)
             constraints:
               nullable: false
         - column:
-            name: created-by
-            type: date
+            name: created_by
+            type: varchar(200)
             constraints:
               nullable: false

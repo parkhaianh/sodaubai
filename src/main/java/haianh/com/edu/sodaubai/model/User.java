@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_info")
 public class User extends AuditEntity {
 
     @Id
@@ -15,7 +15,7 @@ public class User extends AuditEntity {
 
     private String password;
 
-    @Column(name="full-name")
+    @Column(name="full_name")
     private String fullName;
 
     @Transient
