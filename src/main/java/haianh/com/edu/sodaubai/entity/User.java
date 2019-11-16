@@ -1,24 +1,33 @@
-package haianh.com.edu.sodaubai.model;
+package haianh.com.edu.sodaubai.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import haianh.com.edu.sodaubai.entity.Role;
-
+import javax.persistence.*;
 import java.util.Set;
 
-public class User {
+@Entity
+@Table(name = "user_info")
+public class User extends AuditEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
 
     private String password;
 
-    @JsonProperty("full_name")
+    @Column(name="full_name")
     private String fullName;
 
-    @JsonProperty("password_confirm")
+    @Transient
     private String passwordConfirm;
 
+    private Status status;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
     public Long getId() {
@@ -63,6 +72,14 @@ public class User {
 
     public enum Status {
         ACTIVE, INACTIVE, WAITING
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public String getFullName() {

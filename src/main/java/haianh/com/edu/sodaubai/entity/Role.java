@@ -1,11 +1,11 @@
-package haianh.com.edu.sodaubai.model;
+package haianh.com.edu.sodaubai.entity;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "role")
-public class Role {
+@Table(name = "role_info")
+public class Role extends AuditEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +39,13 @@ public class Role {
     public void setUsers(Set<User> users) {
         this.users = users;
     }
+
+    public enum ROLE {
+        ADMIN, USER
+    }
+
+    public Role(ROLE role){
+        this.name = role.name();
+    }
+
 }

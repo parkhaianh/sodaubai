@@ -1,7 +1,7 @@
 package haianh.com.edu.sodaubai.service;
 
-import haianh.com.edu.sodaubai.model.Role;
-import haianh.com.edu.sodaubai.model.User;
+import haianh.com.edu.sodaubai.entity.Role;
+import haianh.com.edu.sodaubai.entity.User;
 import haianh.com.edu.sodaubai.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,55 +1,5 @@
 databaseChangeLog:
-- changeSet:
-    id: v.2019-11-12-01
-    author: haianh
-    changes:
-    - createTable:
-        tableName: user_info
-        columns:
-        - column:
-            name: id
-            type: bigint
-            autoIncrement: true
-            constraints:
-              primaryKey: true
-              nullable: false
-        - column:
-            name: username
-            type: varchar(255)
-            constraints:
-              nullable: false
-        - column:
-            name: password
-            type: varchar(255)
-            constraints:
-              nullable: false
-        - column:
-            name: full_name
-            type: varchar(255)
-            constraints:
-              nullable: true
-        - column:
-            name: status
-            type: varchar(20)
-            constraints:
-              nullable: false
-        - column:
-            name: created_date
-            type: date
-            constraints:
-              nullable: false
-        - column:
-            name: modified_date
-            type: date
-            constraints:
-              nullable: false
-        - column:
-            name: modified_by
-            type: varchar(200)
-            constraints:
-              nullable: false
-        - column:
-            name: created_by
-            type: varchar(200)
-            constraints:
-              nullable: false
+- include:
+    file: db/changelog/init-db.yaml
+- include:
+      file: db/changelog/create-data-role.yaml
