@@ -14,9 +14,8 @@
 </head>
 
 <body>
-
+<%@ include file = "error.jsp" %>
 <div class="container">
-
     <%--@elvariable id="userForm" type="User"--%>
     <form:form method="POST" modelAttribute="userForm" class="form-signin">
         <h2 class="form-signin-heading">Create your account</h2>

@@ -48,4 +48,6 @@ public class Role extends AuditEntity {
         this.name = role.name();
     }
 
+    public Role(){
+    }
 }
