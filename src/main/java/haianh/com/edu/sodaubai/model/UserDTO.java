@@ -5,7 +5,7 @@ import haianh.com.edu.sodaubai.entity.Role;
 
 import java.util.Set;
 
-public class User {
+public class UserDTO extends AuditDTO {
 
     private Long id;
 
@@ -20,6 +20,8 @@ public class User {
     private String passwordConfirm;
 
     private Set<Role> roles;
+    
+    private Status status;
 
     public Long getId() {
         return id;
@@ -72,4 +74,12 @@ public class User {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 }
