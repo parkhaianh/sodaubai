@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import haianh.com.edu.sodaubai.entity.Role;
+import haianh.com.edu.sodaubai.entity.Role.ROLE;
 import haianh.com.edu.sodaubai.entity.User;
 import haianh.com.edu.sodaubai.model.UserDTO;
 import haianh.com.edu.sodaubai.repository.RoleRepository;
@@ -37,9 +38,9 @@ public class UserServiceImpl implements UserService{
             throw new SodaubaiException("username is existed!");
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        Role role = new Role(Role.ROLE.USER);
-        user.setRoles(Stream.of(role).collect(Collectors.toSet()));
+        Role userRole = roleRepository.findRoleByName(ROLE.USER.name());
         User userInfo = new ObjectMapper().convertValue(user, User.class);
+        userInfo.setRoles(Stream.of(userRole).collect(Collectors.toSet()));
         userRepository.save(userInfo);
     }
 

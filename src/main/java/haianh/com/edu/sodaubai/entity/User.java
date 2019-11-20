@@ -1,6 +1,9 @@
 package haianh.com.edu.sodaubai.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Set;
 
 @Entity
@@ -15,10 +18,10 @@ public class User extends AuditEntity {
 
     private String password;
 
-    @Column(name="full_name")
-    private String fullName;
+    private String email;
 
     @Transient
+    @JsonProperty("password_confirm")
     private String passwordConfirm;
 
     private Status status;
@@ -82,11 +85,12 @@ public class User extends AuditEntity {
         this.status = status;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 }

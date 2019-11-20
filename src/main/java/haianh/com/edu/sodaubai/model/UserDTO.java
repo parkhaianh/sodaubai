@@ -13,8 +13,7 @@ public class UserDTO extends AuditDTO {
 
     private String password;
 
-    @JsonProperty("full_name")
-    private String fullName;
+    private String email;
 
     @JsonProperty("password_confirm")
     private String passwordConfirm;
@@ -67,13 +66,13 @@ public class UserDTO extends AuditDTO {
         ACTIVE, INACTIVE, WAITING
     }
 
-    public String getFullName() {
-        return fullName;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public Status getStatus() {
 		return status;
