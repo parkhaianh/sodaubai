@@ -1,13 +1,15 @@
 package haianh.com.edu.sodaubai.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import haianh.com.edu.sodaubai.model.UserDTO;
 import haianh.com.edu.sodaubai.security.SecurityService;
@@ -28,15 +30,20 @@ public class UserController {
     }
 
     @PostMapping("registration")
-    public ModelAndView registration(Model model,@ModelAttribute("userForm") UserDTO user) {
+    @Secured("ROLE_ADMIN")
+    public String registration(Model model,@Valid @ModelAttribute("userForm") UserDTO user, BindingResult bindingResult) {
+    	if (bindingResult.hasErrors()) {
+            return "registration";
+        }
         try {
             user.setStatus(UserDTO.Status.ACTIVE);
+            user.setEmail(user.getUsername());
             userService.save(user);
         } catch (SodaubaiException se) {
             model.addAttribute("error", se.getMessage());
-            return new ModelAndView("registration");
+            return "registration";
         }
-        return new ModelAndView("index");
+        return "index";
     }
 
     @GetMapping("registration")

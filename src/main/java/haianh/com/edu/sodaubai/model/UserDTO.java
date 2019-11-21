@@ -2,17 +2,29 @@ package haianh.com.edu.sodaubai.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import haianh.com.edu.sodaubai.entity.Role;
+import haianh.com.edu.sodaubai.utils.PasswordsEqualConstraint;
 
 import java.util.Set;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
+@PasswordsEqualConstraint
 public class UserDTO extends AuditDTO {
 
     private Long id;
 
+    @Email
+    @NotBlank
     private String username;
 
+    @Length(min = 8)
     private String password;
 
+    @Email
+    @NotBlank
     private String email;
 
     @JsonProperty("password_confirm")
