@@ -34,8 +34,6 @@ jobs:
             - v1-dependencies-
 
       - run: docker-compose up -d
-          name: Install Docker client
-          command: apk add docker-cli
 
       - save_cache:
           paths:
