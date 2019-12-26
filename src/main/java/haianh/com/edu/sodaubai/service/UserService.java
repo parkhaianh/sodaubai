@@ -1,10 +1,10 @@
 package haianh.com.edu.sodaubai.service;
 
-import haianh.com.edu.sodaubai.entity.User;
+import haianh.com.edu.sodaubai.model.UserDTO;
 
 public interface UserService {
 
-    void save(User user);
+    void save(UserDTO user);
 
-    User findByUsername(String username);
+    haianh.com.edu.sodaubai.entity.User findByUsername(String username);
 }

@@ -1,6 +1,5 @@
 package haianh.com.edu.sodaubai.security;
 
-import haianh.com.edu.sodaubai.entity.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;

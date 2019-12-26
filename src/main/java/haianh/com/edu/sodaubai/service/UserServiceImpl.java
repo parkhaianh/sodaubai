@@ -1,16 +1,21 @@
 package haianh.com.edu.sodaubai.service;
 
-import haianh.com.edu.sodaubai.entity.Role;
-import haianh.com.edu.sodaubai.entity.User;
-import haianh.com.edu.sodaubai.repository.RoleRepository;
-import haianh.com.edu.sodaubai.repository.UserRepository;
-import haianh.com.edu.sodaubai.utils.SodaubaiException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import haianh.com.edu.sodaubai.entity.Role;
+import haianh.com.edu.sodaubai.entity.Role.ROLE;
+import haianh.com.edu.sodaubai.entity.User;
+import haianh.com.edu.sodaubai.model.UserDTO;
+import haianh.com.edu.sodaubai.repository.RoleRepository;
+import haianh.com.edu.sodaubai.repository.UserRepository;
+import haianh.com.edu.sodaubai.utils.SodaubaiException;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -27,19 +32,20 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void save(User user) {
-        User existedUser = findByUsername(user.getUsername());
+    public void save(UserDTO user) {
+    	User existedUser = findByUsername(user.getUsername());
         if(!Objects.isNull(existedUser)) {
             throw new SodaubaiException("username is existed!");
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        Role role = new Role(Role.ROLE.USER);
-        user.setRoles(Stream.of(role).collect(Collectors.toSet()));
-        userRepository.save(user);
+        Role userRole = roleRepository.findRoleByName(ROLE.USER.name());
+        User userInfo = new ObjectMapper().convertValue(user, User.class);
+        userInfo.setRoles(Stream.of(userRole).collect(Collectors.toSet()));
+        userRepository.save(userInfo);
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public haianh.com.edu.sodaubai.entity.User findByUsername(String username) {
+    	return userRepository.findByUsername(username);
     }
 }
