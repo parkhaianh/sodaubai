@@ -1,0 +1,20 @@
+databaseChangeLog:
+- changeSet:
+    id: 16112019180000
+    author: haianh
+    changes:
+    - loadData:
+        encoding: UTF-8
+        file: db/changelog/data-init/role.csv
+        separator: ','
+        tableName: role_info
+        columns:
+        - column:
+            name: name
+            type: STRING
+        - column:
+            name: modified_by
+            type: STRING
+        - column:
+            name: created_by
+            type: STRING
