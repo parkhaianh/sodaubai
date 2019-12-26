@@ -22,6 +22,9 @@ jobs:
 
     steps:
       - checkout
+      
+      - setup_remote_docker:
+          docker_layer_caching: true
 
       # Download and cache dependencies
       - restore_cache:
@@ -30,7 +33,9 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: mvn dependency:go-offline
+      - run: docker-compose up -d
+          name: Install Docker client
+          command: apk add docker-cli
 
       - save_cache:
           paths:
@@ -39,3 +44,4 @@ jobs:
 
       # run tests!
       - run: mvn integration-test
+      
